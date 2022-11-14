@@ -1,0 +1,39 @@
+.styleContainer {
+  display: flex;
+  gap: 10px;
+  position: relative;
+}
+.poster {
+  height: 351px;
+  width: 235px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid white;
+}
+.poster:hover {
+  border: 4px solid green;
+  margin: -3px;
+  background-color: red;
+}
+.slider {
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+}
+.slider > img {
+  cursor: pointer;
+  height: 25px;
+}
+.rating {
+  color: grey;
+  display: flex;
+  gap: 1rem;
+}
+.posterContainer {
+  font-size: smaller;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}

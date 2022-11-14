@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Header from "./Components/Header";
+import HomePage from "./Components/HomePage";
+import { GetMovieSearch } from "./Components/API_Calls/GetMovieSearch";
+import "./App.css";
+import { useState } from "react";
 function App() {
+  const [movieSearch, setMovieSearch] = useState();
+  const [searchFound, setSearchFound] = useState(false);
+  const [mediaType, setMediaType] = useState("");
+
+  const searchHandler = (userInput) => {
+    GetMovieSearch(userInput)
+      .then((movie) => {
+        setMovieSearch(movie);
+        setMediaType(movie.media_type);
+      })
+      .then(() => {
+        setSearchFound(true);
+      });
+  };
+  console.log(movieSearch);
+  console.log(mediaType);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header onSearch={searchHandler} />
+      <HomePage
+        searchResult={movieSearch}
+        searchFound={searchFound}
+        setSearchFound={setSearchFound}
+        mediaType={mediaType}
+      />
     </div>
   );
 }
 
 export default App;
+//import ReactDom from react-dom
+// {ReactDOM.createPortal(<Insert Component>, document.getElementById("insert element name in index.html"))

@@ -1,0 +1,15 @@
+.searchContainer {
+  position: absolute;
+  height: 500px;
+  width: 40%;
+  border-radius: 10px;
+  background-color: rgb(31, 31, 31);
+  z-index: 10;
+  padding: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  top: 100px;
+  right: 474px;
+  gap: 10px;
+}
