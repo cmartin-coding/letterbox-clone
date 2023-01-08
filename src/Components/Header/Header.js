@@ -1,4 +1,4 @@
-import logo from "../Components/Images/logo.png";
+import logo from "../Images/logo.png";
 
 import classes from "./Header.module.css";
 import SearchForm from "./SearchForm";

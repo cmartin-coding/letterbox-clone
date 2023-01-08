@@ -1,5 +1,5 @@
 import classes from "./SearchForm.module.css";
-import search from "../Components/Images/search.png";
+import search from "../Images/search.png";
 import { useState } from "react";
 export default function SearchForm(props) {
   const [userInput, setUserInput] = useState("");

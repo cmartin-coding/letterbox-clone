@@ -1,7 +1,7 @@
 import { useState } from "react";
 import classes from "./HomePageSlider.module.css";
-import right from "../Components/Images/slider.png";
-import left from "../Components/Images/slider-left.png";
+import right from "../Images/slider.png";
+import left from "../Images/slider-left.png";
 export default function HomePageSlider(props) {
   const [sliderPlace, setSliderPlace] = useState(4);
 
@@ -17,7 +17,6 @@ export default function HomePageSlider(props) {
       nextMovies.push(theatreMoviesCopy[arrPostion]);
       arrPostion++;
     }
-    console.log(arrPostion);
     const nextMoviesFlat = nextMovies.flat(1);
     setSliderPlace(arrPostion);
     props.setSlider(nextMoviesFlat);
@@ -35,7 +34,6 @@ export default function HomePageSlider(props) {
       nextMovies.push(theatreMoviesCopy[arrPostion]);
       arrPostion++;
     }
-    console.log(arrPostion);
     const nextMoviesFlat = nextMovies.flat(1);
     setSliderPlace(arrPostion);
     props.setSlider(nextMoviesFlat);
@@ -50,7 +48,15 @@ export default function HomePageSlider(props) {
         <img src={left} alt="left-slider" />
       </button>
       {props.slider.map((movie, index) => (
-        <div key={index} className={classes.posterContainer}>
+        <div
+          key={index}
+          className={classes.posterContainer}
+          onClick={() => {
+            movie.media_type = "movie";
+            console.log(movie);
+            props.onSearch(movie);
+          }}
+        >
           <img
             className={classes.poster}
             key={index}

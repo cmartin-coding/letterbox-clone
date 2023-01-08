@@ -18,6 +18,8 @@ export default function PersonResult(props) {
             <div>
               <img
                 src={`https://image.tmdb.org/t/p/original${movies.poster_path}`}
+                alt={movies.title}
+                key={movies.release_date}
               ></img>
             </div>
           ))}
