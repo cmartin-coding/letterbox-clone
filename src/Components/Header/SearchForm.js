@@ -21,6 +21,7 @@ export default function SearchForm(props) {
           name="filmSearch"
           className={classes.searchInput}
           value={userInput}
+          autoComplete="on"
         ></input>
         <button type="submit" className={classes.search}>
           <img src={search} alt="Search" />
