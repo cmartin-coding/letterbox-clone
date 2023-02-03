@@ -1,7 +1,9 @@
 import classes from "./RandomMovieForm.module.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import movieSearchContext from "../Context/context-provider";
 export default function RandomMovieForm(props) {
   const [genreSelected, setGenreSelected] = useState(undefined);
+  const randomMovieCtx = useContext(movieSearchContext);
   const genreHandler = (ev) => {
     setGenreSelected(ev.target.value);
   };
@@ -11,8 +13,9 @@ export default function RandomMovieForm(props) {
     if (genreSelected === undefined || genreSelected === "") {
       return;
     } else {
-      props.onRetrieveUserSelection(genreSelected);
-      setGenreSelected("");
+      randomMovieCtx.showRandomMovie(genreSelected);
+      // props.onShowRandomMovie(genreSelected);
+      // setGenreSelected("");
     }
   };
 

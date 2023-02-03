@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import classes from "./HomePageSlider.module.css";
 import right from "../Images/slider.png";
 import left from "../Images/slider-left.png";
+import movieSearchContext from "../Context/context-provider";
 export default function HomePageSlider(props) {
   const [sliderPlace, setSliderPlace] = useState(4);
-
+  const { search } = useContext(movieSearchContext);
   const moveRightHandler = () => {
     let arrPostion = sliderPlace;
     let nextMovies = [];
@@ -53,8 +54,7 @@ export default function HomePageSlider(props) {
           className={classes.posterContainer}
           onClick={() => {
             movie.media_type = "movie";
-            console.log(movie);
-            props.onSearch(movie);
+            search(movie);
           }}
         >
           <img

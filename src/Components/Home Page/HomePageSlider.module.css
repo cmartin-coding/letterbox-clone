@@ -4,7 +4,7 @@
   position: relative;
 }
 .poster {
-  height: 351px;
+  height: auto;
   width: 235px;
   border-radius: 10px;
   cursor: pointer;

@@ -1,49 +1,17 @@
-import Header from "./Components/Header/Header";
 import HomePage from "./Components/Home Page/HomePage";
-import { GetMovieSearch } from "./Components/API_Calls/GetMovieSearch";
 import "./App.css";
-import { useState } from "react";
-import RandomMovie from "./Components/Random-Movie/RandomMovie";
-import GetRandomTvShow from "./Components/API_Calls/GetRandomMovies";
+import { Route, Routes } from "react-router-dom";
+import Test from "./pages/Test";
+import { MovieContext } from "./Components/Context/context-provider";
 function App() {
-  const [movieSearch, setMovieSearch] = useState();
-  const [searchFound, setSearchFound] = useState(false);
-  const [mediaType, setMediaType] = useState("");
-  const [genres, setGenres] = useState([]);
-  const searchHandler = (userInput) => {
-    GetMovieSearch(userInput)
-      .then((movie) => {
-        setMovieSearch(movie);
-        setMediaType(movie.media_type);
-      })
-      .then(() => {
-        setSearchFound(true);
-      });
-  };
-
-  const showMovieSliderHandler = (selectedMovie) => {
-    setMediaType(selectedMovie.media_type);
-    setMovieSearch(selectedMovie);
-    setSearchFound(true);
-  };
-
-  const genresHandler = (genres) => {
-    setGenres(genres);
-  };
-
-  const showRandomMovieHandler = (genre) => {
-    GetRandomTvShow(genre)
-      .then((movie) => {
-        setMovieSearch(movie);
-        setMediaType(movie.media_type);
-      })
-      .then(() => {
-        setSearchFound(true);
-      });
-  };
   return (
-    <div className="App">
-      <Header onSearch={searchHandler} />
+    <MovieContext>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="sign-in" element={<Test />} />
+      </Routes>
+
+      {/* <Header onSearch={searchHandler} />
       <HomePage
         searchResult={movieSearch}
         searchFound={searchFound}
@@ -51,9 +19,10 @@ function App() {
         mediaType={mediaType}
         onRetrieveGenres={genresHandler}
         onSearch={showMovieSliderHandler}
-      />
-      <RandomMovie genres={genres} onShowRandomMovie={showRandomMovieHandler} />
-    </div>
+        genres={genres}
+        onShowRandomMovie={showRandomMovieHandler}
+      /> */}
+    </MovieContext>
   );
 }
 export default App;
