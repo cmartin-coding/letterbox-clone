@@ -1,20 +1,24 @@
 import ResultCard from "./ResultCard";
 import classes from "./Person.module.css";
+import { useContext } from "react";
+import movieSearchContext from "../Context/context-provider";
 export default function PersonResult(props) {
+  const { movieFound } = useContext(movieSearchContext);
+
   return (
     <ResultCard className={classes.center}>
       <div className={classes.format}>
         <div className={classes.imageHeader}>
           <img
-            src={`https://image.tmdb.org/t/p/original${props.searchResult.profile_path}`}
-            alt={props.searchResult.name}
+            src={`https://image.tmdb.org/t/p/original${movieFound.profile_path}`}
+            alt={movieFound.name}
           ></img>
         </div>
         <div>
           <div className={classes.title}>
-            <h3>{props.searchResult.name}</h3>
+            <h3>{movieFound.name}</h3>
           </div>
-          {props.searchResult.known_for.map((movies) => (
+          {movieFound.known_for.map((movies) => (
             <div>
               <img
                 src={`https://image.tmdb.org/t/p/original${movies.poster_path}`}

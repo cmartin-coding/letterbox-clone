@@ -3,6 +3,7 @@ import classes from "./HomePageSlider.module.css";
 import right from "../Images/slider.png";
 import left from "../Images/slider-left.png";
 import movieSearchContext from "../Context/context-provider";
+
 export default function HomePageSlider(props) {
   const [sliderPlace, setSliderPlace] = useState(4);
   const { search } = useContext(movieSearchContext);

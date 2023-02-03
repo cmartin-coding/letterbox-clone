@@ -1,29 +1,13 @@
 import logo from "../Images/logo.png";
 import SearchResult from "../Result-UI/SearchResult";
 import classes from "./Header.module.css";
-import { GetMovieSearch } from "../API_Calls/GetMovieSearch";
-import { useState } from "react";
+import { useContext } from "react";
 import SearchForm from "./SearchForm";
 import { Link } from "react-router-dom";
+import movieSearchContext from "../Context/context-provider";
 
 export default function Header(props) {
-  const [movieSearch, setMovieSearch] = useState();
-  const [searchFound, setSearchFound] = useState(false);
-  const [mediaType, setMediaType] = useState("");
-  const searchHandler = (userInput) => {
-    GetMovieSearch(userInput)
-      .then((movie) => {
-        setMovieSearch(movie);
-        setMediaType(movie.media_type);
-      })
-      .then(() => {
-        setSearchFound(true);
-      });
-  };
-
-  const overlayClickHandler = () => {
-    setSearchFound(false);
-  };
+  const { searchFound } = useContext(movieSearchContext);
 
   return (
     <div className={classes.container}>
@@ -43,16 +27,10 @@ export default function Header(props) {
           <button>Lists</button>
           <button>Members</button>
           <button>Journal</button>
-          <SearchForm onSearch={searchHandler} />
+          <SearchForm />
         </div>
       </div>
-      {searchFound && (
-        <SearchResult
-          searchResult={movieSearch}
-          onConfirm={overlayClickHandler}
-          mediaType={mediaType}
-        />
-      )}
+      {searchFound && <SearchResult />}
     </div>
   );
 }

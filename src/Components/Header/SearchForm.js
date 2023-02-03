@@ -1,14 +1,16 @@
 import classes from "./SearchForm.module.css";
 import search from "../Images/search.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import movieSearchContext from "../Context/context-provider";
 export default function SearchForm(props) {
   const [userInput, setUserInput] = useState("");
+  const { searchBar } = useContext(movieSearchContext);
   const userInputHandler = (ev) => {
     setUserInput(ev.target.value);
   };
   const submitFormHandler = (ev) => {
     ev.preventDefault();
-    props.onSearch(userInput);
+    searchBar(userInput);
     setUserInput("");
   };
   return (

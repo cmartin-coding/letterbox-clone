@@ -12,7 +12,7 @@ export default async function GetRandomTvShow(genre) {
     movieResponse.results[movieNumber].media_type = "movie";
     return movieResponse.results[+movieNumber];
   } catch (ex) {
-    alert(ex);
+    console.log(ex);
     return;
   }
 }
