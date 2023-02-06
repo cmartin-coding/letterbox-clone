@@ -1,4 +1,3 @@
-import classes from "./SearchForm.module.css";
 import search from "../Images/search.png";
 import { useContext, useState } from "react";
 import movieSearchContext from "../Context/context-provider";
@@ -15,18 +14,18 @@ export default function SearchForm(props) {
   };
   return (
     <form onSubmit={submitFormHandler}>
-      <fieldset className={classes.searchFormat}>
+      <fieldset className="flex w-min h-min p-0 relative pl-10">
         <input
           onChange={userInputHandler}
           type="text"
           id="filmSearch"
           name="filmSearch"
-          className={classes.searchInput}
+          className="rounded-xl"
           value={userInput}
           autoComplete="on"
         ></input>
-        <button type="submit" className={classes.search}>
-          <img src={search} alt="Search" />
+        <button type="submit" className="absolute right-1 bottom-1 pointer">
+          <img src={search} alt="Search" className="h-4" />
         </button>
       </fieldset>
     </form>

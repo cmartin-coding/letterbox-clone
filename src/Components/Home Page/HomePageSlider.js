@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-import classes from "./HomePageSlider.module.css";
 import right from "../Images/slider.png";
 import left from "../Images/slider-left.png";
 import movieSearchContext from "../Context/context-provider";
@@ -42,36 +41,34 @@ export default function HomePageSlider(props) {
   };
 
   return (
-    <div className={classes.styleContainer}>
-      <button
-        className={`${classes.slider} ${classes.left}`}
-        onClick={moveLeftHandler}
-      >
-        <img src={left} alt="left-slider" />
+    <div className="flex relative pt-10 gap-5">
+      <button className="pointer" onClick={moveLeftHandler}>
+        <img src={left} alt="left-slider" className="w-16" />
       </button>
       {props.slider.map((movie, index) => (
-        <div
-          key={index}
-          className={classes.posterContainer}
-          onClick={() => {
-            movie.media_type = "movie";
-            search(movie);
-          }}
-        >
-          <img
-            className={classes.poster}
-            key={index}
-            src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-            alt={movie.title}
-          ></img>
-          <div key={index + 10} className={classes.rating}>
-            <p>{movie.vote_average}⭐</p>
-            <p>🧡{Math.ceil(movie.vote_count / 100) * 100}</p>
+        <div key={index} className="flex flex-col items-center">
+          <button className="hover:border-2 hover:border-green-500  rounded-xl border-2 rounded-xl">
+            <img
+              className="w-64 rounded-xl"
+              key={index}
+              src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+              alt={movie.title}
+              onClick={() => {
+                movie.media_type = "movie";
+                search(movie);
+              }}
+            ></img>
+          </button>
+          <div key={index + 10} className="rating">
+            <p className="text-white">⭐{movie.vote_average}</p>
+            <p className="text-white">
+              🧡{Math.ceil(movie.vote_count / 100) * 100}
+            </p>
           </div>
         </div>
       ))}
-      <button className={classes.slider} onClick={moveRightHandler}>
-        <img src={right} alt="right-slider" />
+      <button className="slider" onClick={moveRightHandler}>
+        <img src={right} alt="right-slider" className="w-16" />
       </button>
     </div>
   );

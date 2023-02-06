@@ -6,19 +6,20 @@ import ResultCard from "./ResultCard";
 export default function MovieResult() {
   const { movieFound } = useContext(movieSearchContext);
   return (
-    <ResultCard className={classes.center}>
+    <ResultCard>
       <div>
         <img
           src={`https://image.tmdb.org/t/p/original${movieFound?.backdrop_path}`}
           alt={movieFound.title}
-          className={classes.background}
+          className="relative opacity-60 w-full h-44"
         ></img>
       </div>
-      <div className={classes.format}>
-        <div className={classes.imageHeader}>
+      <div className="flex gap-4">
+        <div className="flex flex-col">
           <img
             src={`https://image.tmdb.org/t/p/original${movieFound?.poster_path}`}
             alt={movieFound.title}
+            className="border border-white h-60"
           ></img>
           <div className={classes.ratings}>
             <p>{movieFound.vote_average}⭐</p>

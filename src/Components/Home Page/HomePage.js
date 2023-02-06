@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import classes from "./HomePage.module.css";
 import { GetHomePage } from "../API_Calls/GetHomePage";
 import HomePageSlider from "./HomePageSlider";
 import SearchResult from "../Result-UI/SearchResult";
@@ -24,9 +23,11 @@ export default function HomePage() {
 
   return (
     <PageTemplate>
-      <div className={classes.container}>
-        <div className={classes.center}>
-          <h2 className={classes.header}>Popular Movies in Theatres</h2>
+      <div className="flex flex-col justify-center mt-16 w-full relative">
+        <div className="flex flex-col justify-center items-center">
+          <h2 className="text-slate-300 text-center  border-b w-4/5 text-xl font-bold">
+            Popular Movies in Theatres
+          </h2>
           <HomePageSlider
             movies={moviesInTheatre}
             slider={activeMoviesSlider}
