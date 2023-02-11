@@ -5,6 +5,8 @@ import movieSearchContext from "../Context/context-provider";
 
 export default function HomePageSlider(props) {
   const [sliderPlace, setSliderPlace] = useState(4);
+  const [lowerEnd, setLowerEnd] = useState(true);
+  const [higherEnd, setHigherEnd] = useState(false);
   const { search } = useContext(movieSearchContext);
   const moveRightHandler = () => {
     let arrPostion = sliderPlace;
@@ -12,8 +14,10 @@ export default function HomePageSlider(props) {
     const theatreMoviesCopy = props.movies;
     if (arrPostion === theatreMoviesCopy.length) {
       console.log("Reached the end");
+      setHigherEnd(true);
       return;
     }
+    setLowerEnd(false);
     for (let i = 0; i < 4; i++) {
       nextMovies.push(theatreMoviesCopy[arrPostion]);
       arrPostion++;
@@ -29,8 +33,10 @@ export default function HomePageSlider(props) {
     const theatreMoviesCopy = props.movies;
     if (arrPostion < 0) {
       console.log("Lower end");
+      setLowerEnd(true);
       return;
     }
+    setHigherEnd(false);
     for (let i = 0; i < 4; i++) {
       nextMovies.push(theatreMoviesCopy[arrPostion]);
       arrPostion++;
@@ -42,14 +48,18 @@ export default function HomePageSlider(props) {
 
   return (
     <div className="flex relative pt-10 gap-5">
-      <button className="pointer" onClick={moveLeftHandler}>
+      <button
+        className={`pointer`}
+        disabled={lowerEnd}
+        onClick={moveLeftHandler}
+      >
         <img src={left} alt="left-slider" className="w-16" />
       </button>
       {props.slider.map((movie, index) => (
         <div key={index} className="flex flex-col items-center">
           <button className="hover:border-2 hover:border-green-500  rounded-xl border-2 rounded-xl">
             <img
-              className="w-64 rounded-xl"
+              className={`w-64 rounded-xl`}
               key={index}
               src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
               alt={movie.title}
@@ -67,7 +77,11 @@ export default function HomePageSlider(props) {
           </div>
         </div>
       ))}
-      <button className="slider" onClick={moveRightHandler}>
+      <button
+        className="slider"
+        disabled={higherEnd}
+        onClick={moveRightHandler}
+      >
         <img src={right} alt="right-slider" className="w-16" />
       </button>
     </div>

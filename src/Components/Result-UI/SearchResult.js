@@ -1,4 +1,3 @@
-import classes from "./SearchResult.module.css";
 import ReactDOM from "react-dom";
 import React, { useContext } from "react";
 import MovieResult from "./MovieResult";
@@ -7,7 +6,12 @@ import PersonResult from "./PersonResult";
 import movieSearchContext from "../Context/context-provider";
 const Backdrop = () => {
   const { closeModal } = useContext(movieSearchContext);
-  return <div className={classes.backdrop} onClick={closeModal} />;
+  return (
+    <div
+      className="fixed top-0 left-0 w-screen h-full min-h-screen  bg-gray-500/50 z-10 bg-scroll"
+      onClick={closeModal}
+    />
+  );
 };
 
 const Modal = () => {
